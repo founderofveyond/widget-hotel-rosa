@@ -1,31 +1,73 @@
 'use client';
 
-import React from 'react';
-import { getExperiencesByHotelSlug } from '@/lib/data/experiences';
-import { WidgetContainer } from '@/components/widget/WidgetContainer';
-import { use } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { getTheme } from '@/lib/widget/themes';
+import { getExperiencesByHotel } from '@/lib/widget/experiences';
+import WidgetContainer from '@/components/widget/WidgetContainer';
 
 export default function WidgetPage({
   params,
 }: {
-  params: Promise<{ hotelSlug: string }>;
+  params: { hotelSlug: string };
 }) {
-  const { hotelSlug } = use(params);
-  const experiences = getExperiencesByHotelSlug(hotelSlug);
-  
-  if (experiences.length === 0) {
-    return (
-      <div className="p-4 text-center">
-        <p className="text-[var(--color-text-muted)]">No experiences found.</p>
-      </div>
+  const { hotelSlug } = params;
+
+  const theme = useMemo(() => getTheme(hotelSlug), [hotelSlug]);
+  const experiences = useMemo(
+    () => getExperiencesByHotel(hotelSlug),
+    [hotelSlug],
+  );
+
+  // Apply theme CSS variables
+  useEffect(() => {
+    const root = document.documentElement;
+
+    // Colors
+    root.style.setProperty('--trv-primary', theme.colors.primary);
+    root.style.setProperty('--trv-primary-hover', theme.colors.primaryHover);
+    root.style.setProperty('--trv-secondary', theme.colors.secondary);
+    root.style.setProperty('--trv-bg', theme.colors.background);
+    root.style.setProperty('--trv-bg-light', theme.colors.backgroundLight);
+    root.style.setProperty('--trv-text', theme.colors.text);
+    root.style.setProperty('--trv-text-muted', theme.colors.textMuted);
+    root.style.setProperty('--trv-text-heading', theme.colors.textHeading);
+    root.style.setProperty('--trv-border', theme.colors.border);
+
+    // Fonts
+    root.style.setProperty('--trv-font-body', theme.fonts.body);
+    root.style.setProperty('--trv-font-heading', theme.fonts.heading);
+
+    // Sizing
+    root.style.setProperty(
+      '--trv-card-radius',
+      `${theme.sizing.cardRadius}px`,
     );
-  }
-  
+    root.style.setProperty(
+      '--trv-button-radius',
+      `${theme.sizing.buttonRadius}px`,
+    );
+    root.style.setProperty(
+      '--trv-card-image-height',
+      `${theme.sizing.cardImageHeight}px`,
+    );
+
+    // Load Google Fonts
+    if (theme.fonts.bodyUrl) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = theme.fonts.bodyUrl;
+      document.head.appendChild(link);
+    }
+    if (theme.fonts.headingUrl && theme.fonts.headingUrl !== theme.fonts.bodyUrl) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = theme.fonts.headingUrl;
+      document.head.appendChild(link);
+    }
+  }, [theme]);
+
   return (
-    <WidgetContainer
-      experiences={experiences}
-      hotelSlug={hotelSlug}
-    />
+    <WidgetContainer hotelId={hotelSlug} theme={theme} experiences={experiences} />
   );
 }
 

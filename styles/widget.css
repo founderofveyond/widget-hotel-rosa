@@ -1,0 +1,188 @@
+/* CSS Variables - set by JavaScript based on hotel theme */
+:root {
+  --trv-primary: #2563eb;
+  --trv-primary-hover: #1d4ed8;
+  --trv-secondary: #1e40af;
+  --trv-bg: #ffffff;
+  --trv-bg-light: #f8fafc;
+  --trv-text: #1e293b;
+  --trv-text-muted: #64748b;
+  --trv-text-heading: #1e40af;
+  --trv-border: #e2e8f0;
+  --trv-font-body: 'Inter', sans-serif;
+  --trv-font-heading: 'Inter', sans-serif;
+  --trv-card-radius: 12px;
+  --trv-button-radius: 8px;
+  --trv-card-image-height: 200px;
+}
+
+/* Base styles */
+.trv-widget {
+  font-family: var(--trv-font-body);
+  color: var(--trv-text);
+  background: transparent;
+  padding: 24px 16px;
+}
+
+.trv-widget * {
+  box-sizing: border-box;
+}
+
+/* Header */
+.trv-header {
+  margin-bottom: 24px;
+}
+
+.trv-title {
+  font-family: var(--trv-font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--trv-text-heading);
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.trv-description {
+  font-size: 15px;
+  color: var(--trv-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Grid */
+.trv-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .trv-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .trv-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card */
+.trv-card {
+  background: var(--trv-bg);
+  border: 1px solid var(--trv-border);
+  border-radius: var(--trv-card-radius);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.trv-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.trv-card-image {
+  width: 100%;
+  height: var(--trv-card-image-height);
+  object-fit: cover;
+}
+
+.trv-card-body {
+  padding: 16px;
+}
+
+.trv-card-category {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--trv-text-muted);
+  background: var(--trv-bg-light);
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.trv-card-title {
+  font-family: var(--trv-font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--trv-text);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.trv-card-description {
+  font-size: 14px;
+  color: var(--trv-text-muted);
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.trv-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid var(--trv-border);
+}
+
+.trv-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--trv-text-muted);
+}
+
+.trv-card-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--trv-primary);
+}
+
+/* Button */
+.trv-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-family: var(--trv-font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: var(--trv-primary);
+  border: none;
+  border-radius: var(--trv-button-radius);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-decoration: none;
+}
+
+.trv-button:hover {
+  background: var(--trv-primary-hover);
+}
+
+.trv-button-outline {
+  color: var(--trv-primary);
+  background: transparent;
+  border: 2px solid var(--trv-primary);
+}
+
+.trv-button-outline:hover {
+  color: white;
+  background: var(--trv-primary);
+}
+
+.trv-button-full {
+  width: 100%;
+  margin-top: 16px;
+}
+
+

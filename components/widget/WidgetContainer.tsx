@@ -1,61 +1,58 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { Experience } from '@/lib/data/types';
-import { WidgetCard } from './WidgetCard';
-import { Button } from '@/components/ui/Button';
+import type { Experience, HotelTheme } from '@/lib/widget/types';
+import ExperienceCard from './ExperienceCard';
 
-interface WidgetContainerProps {
+interface Props {
+  hotelId: string;
+  theme: HotelTheme;
   experiences: Experience[];
-  hotelSlug: string;
 }
 
-export function WidgetContainer({ experiences, hotelSlug }: WidgetContainerProps) {
+export default function WidgetContainer({ hotelId, theme, experiences }: Props) {
+  // Base URL for full booking experience.
+  // For production, this should point to the /book route, e.g. https://app.traverum.com/book
+  // For local dev, you can use http://localhost:3000/experiences
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BOOKING_URL || 'https://app.traverum.com/book';
+
   // Auto-resize iframe via postMessage
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.parent !== window) {
+    const sendHeight = () => {
       const height = document.documentElement.scrollHeight;
-      window.parent.postMessage({ type: 'resize', height }, '*');
-    }
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'traverum:resize', height }, '*');
+      }
+    };
+
+    sendHeight();
+
+    const observer = new ResizeObserver(sendHeight);
+    observer.observe(document.body);
+
+    return () => observer.disconnect();
   }, [experiences]);
-  
-  const handleViewAll = () => {
-    if (typeof window !== 'undefined') {
-      const fullPageUrl = `${window.location.origin}/experiences/${hotelSlug}`;
-      window.open(fullPageUrl, '_blank');
-    }
-  };
-  
+
   return (
-    <div className="p-4 bg-[var(--color-background)]">
-      <div className="mb-4">
-        <h2 className="text-xl font-bold text-[var(--color-text)] mb-2">
-          Local Experiences
-        </h2>
-        <p className="text-sm text-[var(--color-text-muted)]">
-          Discover amazing tours and activities
-        </p>
+    <div className="trv-widget">
+      {/* Header */}
+      <div className="trv-header">
+        <h2 className="trv-title">{theme.content.title}</h2>
+        <p className="trv-description">{theme.content.description}</p>
       </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        {experiences.slice(0, 3).map(experience => (
-          <WidgetCard
+
+      {/* Experience Grid */}
+      <div className="trv-grid">
+        {experiences.slice(0, 6).map((experience) => (
+          <ExperienceCard
             key={experience.id}
             experience={experience}
-            hotelSlug={hotelSlug}
+            buttonText={theme.content.buttonText}
+            bookingUrl={`${baseUrl}/${hotelId}/${experience.slug}`}
           />
         ))}
-      </div>
-      
-      <div className="text-center">
-        <Button
-          onClick={handleViewAll}
-          className="w-full md:w-auto"
-        >
-          View All Experiences
-        </Button>
       </div>
     </div>
   );
 }
-
