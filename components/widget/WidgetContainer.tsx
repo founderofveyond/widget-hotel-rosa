@@ -11,12 +11,6 @@ interface Props {
 }
 
 export default function WidgetContainer({ hotelId, theme, experiences }: Props) {
-  // Base URL for full booking experience.
-  // For production, this should point to the /book route, e.g. https://app.traverum.com/book
-  // For local dev, you can use http://localhost:3000/experiences
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BOOKING_URL || 'https://app.traverum.com/book';
-
   // Auto-resize iframe via postMessage
   useEffect(() => {
     const sendHeight = () => {
@@ -34,6 +28,9 @@ export default function WidgetContainer({ hotelId, theme, experiences }: Props) 
     return () => observer.disconnect();
   }, [experiences]);
 
+  const getOrigin = () =>
+    typeof window !== 'undefined' ? window.location.origin : '';
+
   return (
     <div className="trv-widget">
       {/* Header */}
@@ -48,10 +45,19 @@ export default function WidgetContainer({ hotelId, theme, experiences }: Props) 
           <ExperienceCard
             key={experience.id}
             experience={experience}
-            buttonText={theme.content.buttonText}
-            bookingUrl={`${baseUrl}/${hotelId}/${experience.slug}`}
+            bookingUrl={`${getOrigin()}/book/${hotelId}/${experience.slug}`}
           />
         ))}
+      </div>
+
+      {/* Learn more link */}
+      <div className="mt-4 text-center">
+        <a
+          href={`${getOrigin()}/book/${hotelId}`}
+          className="text-sm text-[var(--trv-text-muted)] hover:text-[var(--trv-primary)] underline-offset-2 hover:underline"
+        >
+          Explore all experiences &rarr;
+        </a>
       </div>
     </div>
   );

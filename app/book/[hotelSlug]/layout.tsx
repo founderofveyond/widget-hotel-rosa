@@ -5,16 +5,15 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { getHotelBySlug } from '@/lib/data/hotels';
 import { notFound } from 'next/navigation';
-import { use } from 'react';
 
 export default function ExperiencesLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ hotelSlug: string }>;
+  params: { hotelSlug: string };
 }) {
-  const { hotelSlug } = use(params);
+  const { hotelSlug } = params;
   const hotel = getHotelBySlug(hotelSlug);
   
   if (!hotel) {

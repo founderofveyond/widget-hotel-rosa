@@ -23,7 +23,7 @@ export function OrderSummary({ hotelSlug }: OrderSummaryProps) {
         {items.map(item => (
           <div key={item.id} className="flex gap-3">
             <Link
-              href={`/experiences/${hotelSlug}/${item.experienceSlug}`}
+              href={`/book/${hotelSlug}/${item.experienceSlug}`}
               className="relative w-20 h-20 flex-shrink-0 rounded overflow-hidden"
             >
               <Image
@@ -36,7 +36,7 @@ export function OrderSummary({ hotelSlug }: OrderSummaryProps) {
             </Link>
             <div className="flex-1 min-w-0">
               <Link
-                href={`/experiences/${hotelSlug}/${item.experienceSlug}`}
+                href={`/book/${hotelSlug}/${item.experienceSlug}`}
                 className="text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] line-clamp-1"
               >
                 {item.experienceTitle}

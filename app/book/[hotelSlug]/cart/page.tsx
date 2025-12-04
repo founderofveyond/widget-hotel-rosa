@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { use } from 'react';
 import { useCart } from '@/lib/hooks/useCart';
 import { CartItem } from '@/components/cart/CartItem';
 import { CartSummary } from '@/components/cart/CartSummary';
@@ -10,9 +9,9 @@ import { EmptyCart } from '@/components/cart/EmptyCart';
 export default function CartPage({
   params,
 }: {
-  params: Promise<{ hotelSlug: string }>;
+  params: { hotelSlug: string };
 }) {
-  const { hotelSlug } = use(params);
+  const { hotelSlug } = params;
   const { items } = useCart();
   
   if (items.length === 0) {

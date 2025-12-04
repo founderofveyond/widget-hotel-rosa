@@ -1,5 +1,4 @@
 import React from 'react';
-import { use } from 'react';
 import { getExperienceBySlug } from '@/lib/data/experiences';
 import { ImageGallery } from '@/components/detail/ImageGallery';
 import { ExperienceInfo } from '@/components/detail/ExperienceInfo';
@@ -14,9 +13,9 @@ import { notFound } from 'next/navigation';
 export default function ExperienceDetailPage({
   params,
 }: {
-  params: Promise<{ hotelSlug: string; experienceSlug: string }>;
+  params: { hotelSlug: string; experienceSlug: string };
 }) {
-  const { hotelSlug, experienceSlug } = use(params);
+  const { hotelSlug, experienceSlug } = params;
   const experience = getExperienceBySlug(hotelSlug, experienceSlug);
   
   if (!experience) {

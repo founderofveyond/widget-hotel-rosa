@@ -23,7 +23,7 @@ export function BookedExperiences({ items, hotelSlug }: BookedExperiencesProps) 
           >
             <div className="flex gap-4">
               <Link
-                href={`/experiences/${hotelSlug}/${item.experienceSlug}`}
+                href={`/book/${hotelSlug}/${item.experienceSlug}`}
                 className="relative w-24 h-24 flex-shrink-0 rounded overflow-hidden"
               >
                 <Image
@@ -36,7 +36,7 @@ export function BookedExperiences({ items, hotelSlug }: BookedExperiencesProps) 
               </Link>
               <div className="flex-1">
                 <Link
-                  href={`/experiences/${hotelSlug}/${item.experienceSlug}`}
+                  href={`/book/${hotelSlug}/${item.experienceSlug}`}
                   className="text-lg font-semibold text-[var(--color-text)] hover:text-[var(--color-primary)]"
                 >
                   {item.experienceTitle}

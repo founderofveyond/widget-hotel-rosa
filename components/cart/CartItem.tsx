@@ -19,7 +19,7 @@ export function CartItem({ item, hotelSlug }: CartItemProps) {
   return (
     <div className="flex flex-col sm:flex-row gap-4 p-4 border-b border-[var(--color-border)] last:border-0">
       <Link
-        href={`/experiences/${hotelSlug}/${item.experienceSlug}`}
+        href={`/book/${hotelSlug}/${item.experienceSlug}`}
         className="relative w-full sm:w-32 h-32 flex-shrink-0 rounded-lg overflow-hidden"
       >
         <Image
@@ -34,7 +34,7 @@ export function CartItem({ item, hotelSlug }: CartItemProps) {
       <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex-1">
           <Link
-            href={`/experiences/${hotelSlug}/${item.experienceSlug}`}
+            href={`/book/${hotelSlug}/${item.experienceSlug}`}
             className="text-lg font-semibold text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors"
           >
             {item.experienceTitle}

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { use } from 'react';
 import { useRouter } from 'next/navigation';
 import { Booking } from '@/lib/data/types';
 import { SuccessMessage } from '@/components/confirmation/SuccessMessage';
@@ -12,9 +11,9 @@ import { NextSteps } from '@/components/confirmation/NextSteps';
 export default function ConfirmationPage({
   params,
 }: {
-  params: Promise<{ hotelSlug: string; bookingId: string }>;
+  params: { hotelSlug: string; bookingId: string };
 }) {
-  const { hotelSlug, bookingId } = use(params);
+  const { hotelSlug, bookingId } = params;
   const router = useRouter();
   const [booking, setBooking] = useState<Booking | null>(null);
   
@@ -25,7 +24,7 @@ export default function ConfirmationPage({
         setBooking(JSON.parse(stored));
       } else {
         // Booking not found, redirect to catalog
-        router.push(`/experiences/${hotelSlug}`);
+        router.push(`/book/${hotelSlug}`);
       }
     }
   }, [bookingId, hotelSlug, router]);

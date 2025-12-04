@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { use } from 'react';
 import { getExperiencesByHotelSlug } from '@/lib/data/experiences';
 import { getHotelBySlug } from '@/lib/data/hotels';
 import { CatalogHeader } from '@/components/catalog/CatalogHeader';
@@ -14,9 +13,9 @@ type Category = 'all' | 'adventure' | 'food' | 'culture' | 'family' | 'wellness'
 export default function CatalogPage({
   params,
 }: {
-  params: Promise<{ hotelSlug: string }>;
+  params: { hotelSlug: string };
 }) {
-  const { hotelSlug } = use(params);
+  const { hotelSlug } = params;
   const hotel = getHotelBySlug(hotelSlug);
   const allExperiences = getExperiencesByHotelSlug(hotelSlug);
   

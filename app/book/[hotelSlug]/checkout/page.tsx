@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { use } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/lib/hooks/useCart';
 import { useToast } from '@/lib/hooks/useToast';
@@ -16,9 +15,9 @@ import { ToastContainer } from '@/components/ui/Toast';
 export default function CheckoutPage({
   params,
 }: {
-  params: Promise<{ hotelSlug: string }>;
+  params: { hotelSlug: string };
 }) {
-  const { hotelSlug } = use(params);
+  const { hotelSlug } = params;
   const router = useRouter();
   const { items, getTotal, clearCart } = useCart();
   const { toasts, showToast, removeToast } = useToast();
@@ -29,7 +28,7 @@ export default function CheckoutPage({
   
   useEffect(() => {
     if (items.length === 0) {
-      router.push(`/experiences/${hotelSlug}`);
+      router.push(`/book/${hotelSlug}`);
     }
   }, [items.length, hotelSlug, router]);
   
@@ -78,7 +77,7 @@ export default function CheckoutPage({
     clearCart();
     
     // Redirect to confirmation
-    router.push(`/experiences/${hotelSlug}/confirmation/${bookingId}`);
+    router.push(`/book/${hotelSlug}/confirmation/${bookingId}`);
   };
   
   return (

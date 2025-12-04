@@ -33,12 +33,12 @@ export function CartSummary({ hotelSlug }: CartSummaryProps) {
           </div>
         </div>
       </div>
-      <Link href={`/experiences/${hotelSlug}/checkout`}>
+      <Link href={`/book/${hotelSlug}/checkout`}>
         <Button className="w-full" size="lg" disabled={items.length === 0}>
           Proceed to Checkout
         </Button>
       </Link>
-      <Link href={`/experiences/${hotelSlug}`}>
+      <Link href={`/book/${hotelSlug}`}> 
         <Button variant="ghost" className="w-full mt-3">
           Continue Shopping
         </Button>

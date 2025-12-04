@@ -12,7 +12,7 @@ interface WidgetCardProps {
 export function WidgetCard({ experience, hotelSlug }: WidgetCardProps) {
   const handleClick = () => {
     if (typeof window !== 'undefined') {
-      const fullPageUrl = `${window.location.origin}/experiences/${hotelSlug}/${experience.slug}`;
+      const fullPageUrl = `${window.location.origin}/book/${hotelSlug}/${experience.slug}`;
       window.open(fullPageUrl, '_blank');
     }
   };

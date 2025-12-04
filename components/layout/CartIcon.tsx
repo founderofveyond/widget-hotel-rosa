@@ -10,7 +10,7 @@ export function CartIcon({ hotelSlug }: { hotelSlug: string }) {
   
   return (
     <Link
-      href={`/experiences/${hotelSlug}/cart`}
+      href={`/book/${hotelSlug}/cart`}
       className="relative inline-flex items-center justify-center p-2 text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors"
       aria-label="Shopping cart"
     >

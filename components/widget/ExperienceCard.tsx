@@ -2,7 +2,6 @@ import type { Experience } from '@/lib/widget/types';
 
 interface Props {
   experience: Experience;
-  buttonText: string;
   bookingUrl: string;
 }
 
@@ -21,11 +20,7 @@ function formatDuration(minutes: number): string {
   return `${hours}h ${mins}m`;
 }
 
-export default function ExperienceCard({
-  experience,
-  buttonText,
-  bookingUrl,
-}: Props) {
+export default function ExperienceCard({ experience, bookingUrl }: Props) {
   const handleClick = () => {
     if (typeof window !== 'undefined') {
       window.open(bookingUrl, '_blank', 'noopener,noreferrer');
@@ -64,17 +59,16 @@ export default function ExperienceCard({
           </div>
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Button (Book Now) */}
         <button
           type="button"
           className="trv-button trv-button-full"
           onClick={handleClick}
         >
-          {buttonText}
+          Book Now
         </button>
       </div>
     </div>
   );
 }
-
 

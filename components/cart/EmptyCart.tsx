@@ -28,7 +28,7 @@ export function EmptyCart({ hotelSlug }: EmptyCartProps) {
       <p className="text-[var(--color-text-muted)] mb-6">
         Start exploring our experiences and add them to your cart.
       </p>
-      <Link href={`/experiences/${hotelSlug}`}>
+      <Link href={`/book/${hotelSlug}`}> 
         <Button>Browse Experiences</Button>
       </Link>
     </div>

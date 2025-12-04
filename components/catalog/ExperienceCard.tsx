@@ -12,7 +12,7 @@ interface ExperienceCardProps {
 
 export function ExperienceCard({ experience, hotelSlug }: ExperienceCardProps) {
   return (
-    <Link href={`/experiences/${hotelSlug}/${experience.slug}`}>
+    <Link href={`/book/${hotelSlug}/${experience.slug}`}> 
       <Card className="overflow-hidden h-full flex flex-col hover:shadow-xl transition-shadow">
         <div className="relative w-full h-48 overflow-hidden">
           <Image
