@@ -35,10 +35,10 @@ const themes: Record<string, HotelTheme> = {
     },
   },
 
-  // Luxury hotel - elegant serif style
-  'grand-palace': {
-    hotelId: 'grand-palace',
-    hotelName: 'Grand Palace Hotel',
+  // Hotel Rosa - elegant serif style
+  'hotel-rosa': {
+    hotelId: 'hotel-rosa',
+    hotelName: 'Hotel Rosa',
     colors: {
       primary: '#92702e',
       primaryHover: '#7d5f27',

@@ -33,6 +33,38 @@ export const hotels: Hotel[] = [
       catalogDescription: 'Explore the best tours, activities, and experiences in the area. Book directly and create unforgettable memories.',
     },
   },
+  {
+    slug: 'hotel-rosa',
+    name: 'Hotel Rosa',
+    logo: '/images/hotels/hotel-rosa-logo.png',
+    theme: {
+      colors: {
+        primary: '#92702e',
+        primaryHover: '#7d5f27',
+        accent: '#92702e',
+        background: '#fdfbf7',
+        backgroundAlt: '#f5f0e6',
+        text: '#3d3d3d',
+        textMuted: '#6b6b6b',
+        border: '#e8e0d0',
+      },
+      fonts: {
+        body: 'Lato, sans-serif',
+        heading: 'Playfair Display, serif',
+        bodyUrl: 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap',
+        headingUrl: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap',
+      },
+      borderRadius: {
+        card: 4,
+        button: 2,
+        input: 2,
+      },
+    },
+    content: {
+      catalogTitle: 'Curated Experiences',
+      catalogDescription: 'Handpicked activities selected by our concierge team for discerning travelers.',
+    },
+  },
 ];
 
 export function getHotelBySlug(slug: string): Hotel | undefined {
